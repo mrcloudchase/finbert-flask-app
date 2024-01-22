@@ -1,11 +1,11 @@
 from flask import Flask, request, jsonify
-# import feedparser
-# from transformers import AutoTokenizer, AutoModelForSequenceClassification
-# import torch
+import feedparser
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
 
-# # Initialize tokenizer and model for FinBERT from Hugging Face
-# tokenizer = AutoTokenizer.from_pretrained("ProsusAI/finbert")
-# model = AutoModelForSequenceClassification.from_pretrained("ProsusAI/finbert")
+# Initialize tokenizer and model for FinBERT from Hugging Face
+tokenizer = AutoTokenizer.from_pretrained("ProsusAI/finbert")
+model = AutoModelForSequenceClassification.from_pretrained("ProsusAI/finbert")
 
 # Create a new Flask web application
 app = Flask(__name__)
@@ -19,7 +19,7 @@ def home():
     """
     return jsonify({
         'message': 'Welcome to my FinBERT App!',
-        'model': 'finbert'  # Name of the model being used
+        'model': model  # Name of the model being used
     })
 
 # @app.route('/sentiment_analysis', methods=['POST'])
