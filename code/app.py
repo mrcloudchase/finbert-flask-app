@@ -19,7 +19,10 @@ def home():
     """
     return jsonify({
         'message': 'Welcome to my FinBERT App!',
-        'model': "ProsusAI/finbert"  # Name of the model being used
+        'model': "ProsusAI/finbert",  # Name of the model being used
+        'endpoints': { "/sentiment_analysis": "Sentiment Analysis", "/fetch_rss_feed": "Fetch RSS Feed" },
+        'usage': "Send a POST request to the desired endpoint with the required data.",
+        'required_data': { "/sentiment_analysis": "JSON with a 'url' key pointing to an RSS feed", "/fetch_rss_feed": "JSON with a 'url' key pointing to an RSS feed" }
     })
 
 @app.route('/sentiment_analysis', methods=['POST'])
