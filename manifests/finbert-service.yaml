@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: kubernetes-demo-hello-app-service
   labels:
-    app: hello-app 
+    app: finbert-app 
 spec:
   selector:
-    app: hello-app 
+    app: finbert-app 
 
   ports:
     - port: 8080
