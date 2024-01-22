@@ -3,9 +3,24 @@ import feedparser
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 
-# Initialize tokenizer and model for FinBERT from Hugging Face
-tokenizer = AutoTokenizer.from_pretrained("ProsusAI/finbert")
-model = AutoModelForSequenceClassification.from_pretrained("ProsusAI/finbert")
+# Define model name
+model_name = "ProsusAI/finbert"
+
+# Load the tokenizer and model from the Hugging Face model hub
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSequenceClassification.from_pretrained(model_name)
+
+# Only run this code if you want to download the model and tokenizer to your local machine
+# # Download and save the tokenizer and model
+# tokenizer = AutoTokenizer.from_pretrained(model_name)
+# tokenizer.save_pretrained('./code/models/finbert/')
+
+# model = AutoModelForSequenceClassification.from_pretrained(model_name)
+# model.save_pretrained('./code/models/finbert/')
+
+# # Load the tokenizer and model from the model directory
+# tokenizer = AutoTokenizer.from_pretrained('./model/finbert/')
+# model = AutoModelForSequenceClassification.from_pretrained('./model/finbert/')
 
 # Create a new Flask web application
 app = Flask(__name__)
@@ -19,9 +34,10 @@ def home():
     """
     return jsonify({
         'message': 'Welcome to my FinBERT App!',
-        'model': "ProsusAI/finbert",  # Name of the model being used
+        'model': model_name,  # Name of the model being used
         'endpoints': { "/sentiment_analysis": "Sentiment Analysis", "/fetch_rss_feed": "Fetch RSS Feed" },
         'usage': "Send a POST request to the desired endpoint with the required data.",
+        'example_request': 'curl -X POST -H "Content-Type: application/json" -d \'{"url": "https://feeds.content.dowjones.io/public/rss/mw_realtimeheadlines"}\' http://<fqdn_or_ip>:8080/sentiment_analysis',
         'required_data': { "/sentiment_analysis": "JSON with a 'url' key pointing to an RSS feed", "/fetch_rss_feed": "JSON with a 'url' key pointing to an RSS feed" }
     })
 
