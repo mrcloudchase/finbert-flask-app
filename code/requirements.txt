@@ -1,1 +1,6 @@
 flask
+feedparser
+requests
+jsonify
+transformers
+torch
