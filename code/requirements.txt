@@ -1,6 +1,6 @@
 flask
-feedparser
-requests
-jsonify
-transformers
-torch
+# feedparser
+# requests
+# jsonify
+# transformers
+# torch
