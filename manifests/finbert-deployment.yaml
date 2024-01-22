@@ -1,7 +1,7 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: kubernetes-demo-hello-app
+  name: finbert-app
   labels: 
      app: finbert-app
 
@@ -17,7 +17,7 @@ spec:
         app: finbert-app
     spec:
       containers:
-      - name: hello-app
+      - name: finbert-app
         image: DOCKER_IMAGE
         imagePullPolicy: Always
         ports:
